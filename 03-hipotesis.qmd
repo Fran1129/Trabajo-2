@@ -1,0 +1,5 @@
+﻿---
+title: "Hipótesis"
+---
+
+Hipótesis de investigación. Deben ser pre-registradas.

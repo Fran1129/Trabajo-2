@@ -1,0 +1,4 @@
+﻿---
+title: "Resultados"
+---
+Interpreta resultados, limitaciones y aportes.
