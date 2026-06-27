@@ -1,2 +1,6 @@
 /.quarto/
 **/*.quarto_ipynb
+# Base de datos CASEN (no subir por tamaño y licencia)
+input/data-orig/
+*.dta
+*.sav
