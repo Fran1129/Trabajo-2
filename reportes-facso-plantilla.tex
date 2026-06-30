@@ -370,8 +370,8 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Título del trabajo},
-  pdfauthor={Nombre Apellido; Nombre Apellido; Nombre Apellido},
+  pdftitle={Hacinamiento y saneamiento en Chile{,} un análisis comparativo entre zonas rurales y urbanas},
+  pdfauthor={Violeta Mansilla; Francisca Osorio; Martina Soto},
   pdflang={es},
   colorlinks=true,
   linkcolor={Maroon},
@@ -381,7 +381,8 @@
   pdfcreator={LaTeX via pandoc}}
 
 
-\title{Título del trabajo}
+\title{Hacinamiento y saneamiento en Chile, un análisis comparativo
+entre zonas rurales y urbanas}
 \usepackage{etoolbox}
 \makeatletter
 \providecommand{\subtitle}[1]{% add subtitle to \maketitle
@@ -389,8 +390,8 @@
 }
 \makeatother
 \subtitle{Trabajo final}
-\author{Nombre Apellido \and Nombre Apellido \and Nombre Apellido}
-\date{29 de junio de 2026}
+\author{Violeta Mansilla \and Francisca Osorio \and Martina Soto}
+\date{30 de junio de 2026}
 \begin{document}
 \frontmatter
 \maketitle
@@ -499,7 +500,15 @@
 
 \markboth{Abstract}{Abstract}
 
-\small\textbf{Palabras clave:} Ciencia Social Abierta \normalsize
+\small\textbf{Palabras clave:} Hacinamiento, Saneamiento, Zona rural,
+Zona urbana, Desigualdad, Acceso. \normalsize
+
+El presente trabajo analiza las diferencias en las condiciones de
+hacinamiento y acceso a saneamiento básico entre hogares de zonas
+urbanas y rurales en Chile, a partir de los datos de la Encuesta de
+Caracterización Socioeconómica Nacional (CASEN) 2024. Adicionalemente,
+se realiza un análisis exploratorio de dicha problematica a nivel de
+región, lo que permite fortalecer las discusiones del proyecto.
 
 \bookmarksetup{startatroot}
 
@@ -634,13 +643,74 @@ el hacinamiento y el saneamiento en zonas rurales y urbanas.
 
 \chapter{Hipótesis}\label{hipuxf3tesis}
 
-Hipótesis de investigación. Deben ser pre-registradas.
+La pregunta que este proyecto busca respondes es: ¿Cuáles son las
+diferencias en las situaciones de hacinamiento y de acceso a saneamiento
+básico de los hogares en las zonas rurales respecto de las zonas urbanas
+en Chile?
+
+En ese sentido, para poder responder a dicha interrogante se plantean
+las siguientes hipótesis:
+
+H1: La proporción de hogares en situación de hacinamiento (más de 2.5
+personas por dormitorio) es significativamente mayor en zonas rurales
+que en zonas urbanas. H2: El acceso a saneamiento adecuado (agua potable
+y sistema de alcantarillado) es menor en zonas rurales que en las zonas
+urbanas.
+
+Dichas hipótesis fueron pre registradas en el repositorio de Open
+Science Framework (OSF) del proyecto, con el fin de garantizar la
+transparencia y reproducibilidad de la investigación. El repositorio se
+encuentra disponible en: Fuentes et~al.
+(\citeproc{ref-fuentes2026}{2026})
 
 \bookmarksetup{startatroot}
 
 \chapter{Métodos}\label{muxe9todos}
 
-Datos y protocolo de investigación
+Este trabajo cuenta con un diseño comparativo y transversal basado en la
+observación, para lo cual se utilizó la base de datos y libro de códigos
+de la Encuesta Casen 2024. A través de un enfoque cuantitativo se
+comparó la situación de hacinamiento y de acceso a saneamiento básico
+entre hogares urbanos y rurales. La unidad de análisis es el hogar, la
+cual se identificó mediante la variable ``folio''.
+
+Las variables dependientes son ``ind\_hacina'' e ``ind\_san'', las
+cuales son indicadores de hacinamiento y de saneamiento ya construidos y
+validados por el Ministerio de Desarrollo Social y Familia, que se
+recodificaron como variables binarias (``hacinado'' y
+``saneamiento\_deficitario'') para facilitar la comparación entre zonas.
+La variable independiente principal es la zona de residencia (``area'',
+recodificada como ``zona'': urbano/rural). La variable ``region'' es
+incluída como control y para análisis exploratorio, mientras que
+``varstrat'', ``varunit'' y ``expr'' son variables técnicas del diseño
+muestral, no analíticas. El identificador ``folio'' es utilizado para
+asegurar que cada hogar se cuente una sola vez.
+
+Puesto que se trabaja a nivel de hogar, primero se eliminó la
+duplicación de registros y se conserva un único registro por folio.
+Luego se seleccionaron las variables necesarias para el análisis (folio,
+ind\_hacina, ind\_san, area, region, expr, varstrat, varunit),
+descartando el resto de la base. Finalmente, se excluyen los hogares con
+valor ``No sabe'' (-88) en ind\_hacina, ya que no aportan información
+válida para clasificar el nivel de hacinamiento. No se aplican otros
+filtros, dado que la pregunta de investigación busca una comparación
+general a nivel nacional, sin acotar a un subgrupo poblacional
+específico.
+
+El proyecto se organizó mediante la estructura IPO (Input,
+Procesamiento, Output). En ese sentido, la base de datos de Casen (2024)
+se encuentra dentro de la carpeta Input; los archivos de procesamiento,
+análisis y visualización de los datos, se encuentran en la carpeta de
+Procesamiento; y finalmente, las imágenes de los gráficos creados están
+en la carpeta Output.
+
+Cabe destacar que debido a que la base de datos utilizada tiene un peso
+de 1.50GB, superando considerablemente el límite de GB de Github, esta
+no pudo ser subida al repositorio del proyecto, por lo que solo se
+importó de manera local al template. Esto significó una complicación al
+momento de subir el proyecto al repositorio de Github, por lo que se
+utilizó la herramienta de Gitignore para así conservar la base de datos
+solo de manera local.
 
 \bookmarksetup{startatroot}
 
@@ -763,7 +833,42 @@ ignorando un análisis más profundo de la problemática. Pese a ello, los
 
 \chapter{Conclusiones}\label{conclusiones}
 
-Síntesis y proyecciones futuras.
+El presente proyecto permitió analizar una de las aristas más relevantes
+de la crisis habitacional atravesada en los últimos años; la
+problemática del hacinamiento y el déficit de acceso a saneamiento
+adecuado. El análisis realizado permitió caracterizar esta problemática
+tanto en zonas rurales como urbanas, así como desagregar la información
+según las regiones del país.
+
+En relación a las hipótesis planteadas, los resultados mostraron
+conclusiones diferentes. La hipótesis sobre hacinamiento (H1) fue
+rechazada, evidenciando que este problema afecta en mayor medida a los
+hogares urbanos (4,2\%) que a los rurales (3,3\%). La hipótesis sobre
+saneamiento (H2) fue confirmada de manera contundente, mostrando que el
+déficit de acceso a saneamiento adecuado es dramáticamente mayor en
+zonas rurales (18,4\%) que en zonas urbanas (2,8\%), con una
+probabilidad casi 8 veces mayor de tener saneamiento deficitario en
+hogares rurales (OR = 7,75).
+
+Por su parte, el análisis exploratorio por región permitió reforzar
+estos hallazgos, evidenciando que las brechas urbano-rurales no son
+homogéneas a lo largo del país. Factores como la urbanización, la
+migración y la distribución histórica de infraestructura sanitaria
+podrían estar relacionados con los patrones observados, aunque el diseño
+observacional del estudio no permite establecer relaciones causales.
+
+En ese sentido, los resultados son consistentes, por lo que permiten
+responder a la pregunta inicial, identificando una crisis habitacional
+estructural que afecta de manera diferenciada a los territorios urbanos
+y rurales del país. A su vez, detallan las diferencias en las
+situaciones de hacinamiento y de acceso a saneamiento básico de los
+hogares en las zonas rurales respecto de las zonas urbanas en Chile.
+
+Esto sugiere la necesidad de políticas públicas focalizadas
+territorialmente, que aborden tanto el hacinamiento en zonas
+metropolitanas como el déficit de saneamiento en zonas rurales,
+particularmente en las regiones del sur de Chile donde las brechas son
+más pronunciadas.
 
 \bookmarksetup{startatroot}
 
@@ -789,6 +894,12 @@ Ducci, M. (2008). La política habitacional como instrumento de
 desintegración social: Efectos de una política de vivienda exitosa. En
 \emph{Retos para la integración social de los pobres en {América
 Latina}} (pp. 293-310). {CLACSO}.
+
+\bibitem[\citeproctext]{ref-fuentes2026}
+Fuentes, V. M., Osorio, F. A., \& Ortega, M. S. (2026).
+\emph{Hacinamiento y saneamiento en {Chile}, un análisis comparativo
+entre zonas rurales y urbanas}.
+\url{https://doi.org/10.17605/OSF.IO/96A3W}
 
 \bibitem[\citeproctext]{ref-mdsf2024}
 Ministerio de Desarrollo Social y Familia. (2024). \emph{Encuesta de
