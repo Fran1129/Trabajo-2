@@ -11,7 +11,7 @@ format:
 ---
 
 ::: {.content-visible when-format="pdf"}
-\small\textbf{Palabras clave:} Ciencia Social Abierta
+\small\textbf{Palabras clave:} Hacinamiento, Saneamiento, Zona rural, Zona urbana, Desigualdad, Acceso. 
 \normalsize
 :::
 
@@ -20,7 +20,9 @@ format:
 nav#TOC { display: none !important; }
 div[data-when-format="pdf"] { display: none !important; }
 </style>
-<span class="keywords-line"><strong>Palabras clave:</strong> Ciencia Social Abierta</span>
+<span class="keywords-line"><strong>Palabras clave:</strong> Hacinamiento, Saneamiento, Zona rural, Zona urbana, Desigualdad, Acceso</span>
 :::
 
 # Abstract {.unnumbered}
+
+El presente trabajo analiza las diferencias en las condiciones de hacinamiento y acceso a saneamiento básico entre hogares de zonas urbanas y rurales en Chile, a partir de los datos de la Encuesta de Caracterización Socioeconómica Nacional (CASEN) 2024. Adicionalemente, se realiza un análisis exploratorio de dicha problematica a nivel de región, lo que permite fortalecer las discusiones del proyecto. 
