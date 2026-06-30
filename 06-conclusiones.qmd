@@ -1,4 +1,13 @@
 ﻿---
 title: "Conclusiones"
 ---
-Síntesis y proyecciones futuras.
+El presente proyecto permitió analizar una de las aristas más relevantes de la crisis habitacional atravesada en los últimos años; la problemática del hacinamiento y el déficit de acceso a saneamiento adecuado. El análisis realizado permitió caracterizar esta problemática tanto en zonas rurales como urbanas, así como desagregar la información según las regiones del país.
+
+En relación a las hipótesis planteadas, los resultados mostraron conclusiones diferentes. La hipótesis sobre hacinamiento (H1) fue rechazada, evidenciando que este problema afecta en mayor medida a los hogares urbanos (4,2%) que a los rurales (3,3%). La hipótesis sobre saneamiento (H2) fue confirmada de manera contundente, mostrando que el déficit de acceso a saneamiento adecuado es dramáticamente mayor en zonas rurales (18,4%) que en zonas urbanas (2,8%), con una probabilidad casi 8 veces mayor de tener saneamiento deficitario en hogares rurales (OR = 7,75).
+
+Por su parte, el análisis exploratorio por región permitió reforzar estos hallazgos, evidenciando que las brechas urbano-rurales no son homogéneas a lo largo del país. Factores como la urbanización, la migración y la distribución histórica de infraestructura sanitaria podrían estar relacionados con los patrones observados, aunque el diseño observacional del estudio no permite establecer relaciones causales. 
+
+En ese sentido, los resultados son consistentes, por lo que permiten responder a la pregunta inicial, identificando una crisis habitacional estructural que afecta de manera diferenciada a los territorios urbanos y rurales del país. A su vez, detallan las diferencias en las situaciones de hacinamiento y de acceso a saneamiento básico de los hogares en las zonas rurales respecto de las zonas urbanas en Chile. 
+
+Esto sugiere la necesidad de políticas públicas focalizadas territorialmente, que aborden tanto el hacinamiento en zonas metropolitanas como el déficit de saneamiento en zonas rurales, particularmente en las regiones del sur de Chile donde las brechas son más pronunciadas.
+

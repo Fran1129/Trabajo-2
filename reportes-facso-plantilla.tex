@@ -68,6 +68,7 @@
 
 
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -94,15 +95,48 @@
 \makeatother
 
 
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \ifLuaTeX
-\usepackage[bidi=basic]{babel}
+\usepackage[bidi=basic,shorthands=off]{babel}
 \else
-\usepackage[bidi=default]{babel}
+\usepackage[bidi=default,shorthands=off]{babel}
 \fi
-% get rid of language-specific shorthands (see #6817):
-\let\LanguageShortHands\languageshorthands
-\def\languageshorthands#1{}
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
 
 
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -356,7 +390,7 @@
 \makeatother
 \subtitle{Trabajo final}
 \author{Nombre Apellido \and Nombre Apellido \and Nombre Apellido}
-\date{22 de junio de 2026}
+\date{29 de junio de 2026}
 \begin{document}
 \frontmatter
 \maketitle
@@ -471,14 +505,130 @@
 
 \chapter{Introducción}\label{introducciuxf3n}
 
-Motivación, preguntas de investigación, Objetivo general y específicos,
-contribución esperada, estructura del documento.
+La presente investigación nace de la motivación por estudiar las
+disparidades socioeconómicas y territoriales entre las áreas urbanas y
+rurales en Chile ya que estas continúan siendo un desafío estructural
+para el desarrollo del país. Las brechas en la calidad de vida no solo
+se manifiestan en los ingresos monetarios, sino de manera crítica en las
+condiciones habitacionales y en el acceso a servicios básicos dentro del
+hogar (\citeproc{ref-ducci2008}{Ducci, 2008}). En este sentido, este
+estudio aborda esta problemática centrándose en dos dimensiones
+fundamentales: el hacinamiento y el acceso a saneamiento básico.
+
+Frente a esto, la investigación plantea la siguiente pregunta central:
+¿Cuáles son las diferencias en las situaciones de hacinamiento y de
+acceso a saneamiento básico de los hogares en las zonas rurales respecto
+de las zonas urbanas en Chile?. Para responder, el objetivo general de
+este estudio es analizar las diferencias en las condiciones de
+hacinamiento y acceso a saneamiento básico entre hogares de zonas
+urbanas y rurales en Chile, a partir de los datos de la Encuesta CASEN
+2024. Y en este sentido, los objetivos específicos contemplan: describir
+la proporción de hogares en situación de hacinamiento en zonas urbanas y
+rurales de Chile; comparar el acceso a saneamiento adecuado entre
+hogares urbanos y rurales; y evaluar si las diferencias observadas en
+hacinamiento y saneamiento entre zonas urbanas y rurales son
+estadísticamente significativas.
+
+La contribución esperada de este proyecto abierto es aportar evidencia
+empírica reciente que pueda contribuir a la discusión pública, así como
+en la profundización de políticas habitacionales focalizadas
+territorialmente. De este modo, la estructura del documento se organiza
+de forma lógica para dar cuenta de este proceso: Se comienza con la
+presente sección introductoria, continua con los antecedentes que
+presenta el respaldo teorico y empirico de esta investigación,
+posteriormente la presentación de las hipótesis, seguido de los métodos
+y sus resultados, para finalmente finalizar con las conclusiones.
+
+Para poder cumplir con las interrogantes y los objetivos, el proyecto se
+organiza mediante una justificación teórica y empírica de la
+problemática, un sección de hipótesis, una explicación de los métodos
+utilizados, seguido de sus resultados y finalmente una discusión de los
+hallazgos. Asimismo, se espera que esta investigación pueda contribuir a
+caracterizar esta problemática y sirva de respaldo empírico para la toma
+de decisiones en políticas públicas.
 
 \bookmarksetup{startatroot}
 
 \chapter{Antecedentes}\label{antecedentes}
 
-Respaldo teórico y empírico de la investigación
+Como se mencionó anteriormente, esta investigación surge del interés por
+estudiar las desigualdades sociales latentes en el país. Para ello, se
+analiza una de sus principales aristas: la crisis habitacional actual,
+expresada concretamente en las situaciones de hacinamiento y el déficit
+de saneamiento básico de los hogares.
+
+Desde una perspectiva conceptual, la habitabilidad y el acceso a la
+infraestructura sanitaria minima constituyen componentes esenciales de
+la calidad residencial. En este sentido, D'alencon et~al.
+(\citeproc{ref-dalencon2008}{2008}) definen la habitabilidad como las
+cualidades de la vivienda, su entorno inmediato y el conjunto
+habitacional, abarcando desde la estructura material hasta el uso y
+confort percibido, factores que permiten de manera conjunta ``la
+satisfacción de las necesidades de las personas que la habitan y su
+desarrollo'' (p.~275). De este modo, en el contexto de las asimetrías de
+Latinoamérica, la vivienda opera como ``una expresión espacial de las
+desigualdades sociales, y a la vez generadora de otras relacionadas con
+el entorno urbano en donde se ubica'' (\citeproc{ref-ortiz2021}{Ortiz \&
+Soria, 2021}).
+
+Según la Encuesta de Caracterización Socioeconómica Nacional (CASEN)
+(\citeproc{ref-mdsf2024}{Ministerio de Desarrollo Social y Familia,
+2024}), el hacinamiento en el área urbana alcanza un 4,2\% frente a un
+3,3\% en el sector rural; por otro lado, el saneamiento deficitario
+afecta drásticamente al 18,4\% de los hogares rurales si lo comparamos
+con un 2,8\% en las zonas urbanas.
+
+Estos fenómenos se encuentran directamente vinculados con el desarrollo
+habitacional del cono sur. Según Trebilcock
+(\citeproc{ref-trebilcock2024}{2024}), la crisis de la vivienda en
+América Latina se ha extendido de forma sostenida, donde Chile ha
+experimentado un aumento crítico en el déficit habitacional desde el año
+2017. Esta situación recientemente mencionada se ve complejizada por el
+diseño de instrumentos, debido a que, como menciona Vergara-Perucich
+(\citeproc{ref-vergara2023}{2023}), la política habitacional chilena
+basada en claves subsidiarias focalizadas ha generado una especie de
+círculo vicioso porque, si bien se observan reducciones en aspectos como
+el allegamiento y la calidad material, el déficit continúa incrementando
+en factores más complejos, tales como el hacinamiento.
+
+Esta expresión del déficit habitacional cambia según el territorio,
+concentrando dinámicas más complejas en las áreas urbanas debido a
+factores propios de la oferta y demanda. Desde la oferta, la deficiente
+planificación urbana ha propiciado el aumento de núcleos urbanos
+hiperdensos, como es el caso de Estación Central, donde existen zonas
+con densidades bastante altas que superan los 15.000 habitantes por
+hectárea en edificaciones de gran altura y baja calidad
+(\citeproc{ref-serey2023}{Serey Morales, 2023}). Por el lado de la
+demanda, según Razmilic (\citeproc{ref-razmilic2019}{2019}), los flujos
+migratorios recientes se han localizado en su mayoría en zonas urbanas
+dinámicas, en lugar de zonas rurales, buscando proximidad a los mercados
+laborales. En este sentido, la población migrante opta mayoritariamente
+por el mercado de arriendo, lo que intensifica el hacinamiento crítico.
+
+En lo que respecta al saneamiento básico, la brecha entre lo urbano y lo
+rural responde a lógicas institucionales y de mercado bastante
+diferenciadas. Los entornos urbanos se encuentran marcados por altos
+niveles de cobertura y eficiencia; por el otro lado, la carencia tiende
+a confinarse en los sectores más empobrecidos y marginados
+(\citeproc{ref-berrios2023}{Berríos, 2023}). Este fenómeno de exclusión
+en las ciudades se ve potenciado por la gentrificación, donde las
+mejoras en la infraestructura básica incrementan el valor de la
+propiedad, desplazando a las familias de bajos ingresos y, en este
+sentido, fomentando las disparidades socioeconómicas
+(\citeproc{ref-berrios2023}{Berríos, 2023}).
+
+En el análisis de Berríos (\citeproc{ref-berrios2023}{2023}) se refleja
+la realidad de las zonas rurales y las dificultades que enfrentan
+respecto a gestión y de cobertura técnica antes que puramente
+socioeconomicas, por ejemplo, esta disparidad se intensifica por la
+variabilidad macro-regional del país y las falencias operacionales de
+los Programas de Agua Potable Rural (APR), expresadas en una desigual
+distribución presupuestaria y una falta de inversión en zonas
+semiconcentradas o dispersas.
+
+El análisis de estas variables mediante la CASEN 2024 resulta
+fundamental, ya que permite visibilizar la disparidad de fenómenos como
+el hacinamiento y el saneamiento en zonas rurales y urbanas.
 
 \bookmarksetup{startatroot}
 
@@ -496,7 +646,118 @@ Datos y protocolo de investigación
 
 \chapter{Resultados}\label{resultados}
 
-Interpreta resultados, limitaciones y aportes.
+Los análisis descriptivos realizados permitieron caracterizar la
+situación de hacinamiento y saneamiento tanto en las zonas rurales como
+en las zonas urbanas; asimismo, los resultados permitieron contrastar
+las hipótesis anteriormente registradas.
+
+Respecto de la situación de hacinamiento (H1), para evaluar la situación
+según la zona de residencia, se realizó una prueba de Chi cuadrado junto
+una regresión logística, utilizando las variables de hacinamiento y zona
+(es decir, rural o urbana). Los resultados de las pruebas arrojaron que
+el porcentaje de hacinamiento en las zonas urbanas es de 4,2\%, mientras
+que en la zona rural es de 3,3\%, todo esto con una diferencia
+estadísticamente significativa (p = 0,0006). A su vez el análisis de
+regresión logística muestra que los hogares rurales tienen un 22\% menos
+probabilidad de estar hacinados que los hogares urbanos (OR = 0,78). Por
+tanto, la hipótesis que planteaba que el hacinamiento sería mayor en
+zonas rurales que en zonas urbanas, se rechaza.
+
+A continuación se presenta el gráfico con los resultados:
+
+\begin{figure}[H]
+
+\caption{Figura 1. Porcentaje de hogares en situación de hacinamiento
+según zona geográfica. CASEN 2024. Elaboración propia.}
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{05-resultados_files/figure-pdf/unnamed-chunk-1-1.pdf}}
+
+}
+
+\end{figure}%
+
+La metodología utilizada para contrastar la hipótesis de saneamiento
+(H2) fue exactamente la misma, en ese sentido, los resultados indicaron
+que mientras en las zonas urbanas el saneamiento deficitario es de
+2,8\%, en las zonas rurales este alcanza un 18,4\%, por lo que los
+hogares rurales tiene una probabilidad casi ocho veces mayor de vivir en
+estas condiciones. Dichos resultados permiten confirmar la hipótesis de
+que el acceso a saneamiento adecuado es menor en zonas rurales que en
+las zonas urbanas.
+
+A continuación se presenta el gráfico con los resultados:
+
+\begin{figure}[H]
+
+\caption{Figura 2. Porcentaje de hogares con saneamiento deficitario
+según zona geográfica. CASEN 2024. Elaboración propia.}
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{05-resultados_files/figure-pdf/unnamed-chunk-2-1.pdf}}
+
+}
+
+\end{figure}%
+
+Sobre los alcances del presente proyecto, este permite caracterizar la
+situación de hacinamiento y saneamiento a nivel nacional, distinguiendo
+entre zonas rurales y urbanas mediante el uso de datos recientes y
+atingentes a la problemática. En ese sentido, cabe precisar que las
+hipótesis registradas consideran únicamente el desglose urbano-rural; no
+obstante, con el fin de enriquecer el estudio, se incorporó un análisis
+exploratorio a nivel regional. Este último apartado se plantea sólo como
+un complemento para la discusión, ya que no formaba parte del registro
+inicial, pero se considera que su inclusión permite evaluar si las
+brechas urbano-rurales son homogéneas en todo el país o si varían según
+la región, fortaleciendo así las discusiones del proyecto.
+
+En ese sentido, el análisis exploratorio arrojó que las diferencias en
+hacinamiento entre zonas urbanas y rurales son pequeñas y poco
+consistentes a lo largo del país, lo que es coherente con los hallazgos
+de la hipótesis 1. Cabe señalar que las regiones que arrojan una mayor
+crisis de hacinamiento corresponden a la Región de Arica y Parinacota y
+la de Tarapacá, lo que podría atribuirse al alto flujo migratorio de
+aquellas regiones. Respecto del análisis de saneamiento por región, este
+arrojó diferencias más latentes, debido a que regiones del sur como La
+Araucanía o Los Ríos presentan un mayor déficit de saneamiento que
+regiones mayormente urbanizadas, como la Región Metropolitana. Por lo
+que, tal como se presenta en los gráficos anteriores, es posible
+destacar que las diferencias entre el hacinamiento y el acceso a
+saneamiento adecuado, no son homogéneas a lo largo de todas las
+regiones.
+
+A continuación se presentan los gráficos con los resultados del análisis
+exploratorio por región:
+
+\begin{figure}[H]
+
+\caption{Figura 3. Porcentaje de hogares en situación de hacinamiento
+por región y zona geográfica. CASEN 2024. Elaboración propia.}
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{05-resultados_files/figure-pdf/unnamed-chunk-3-1.pdf}}
+
+}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\caption{Figura 4. Porcentaje de hogares con saneamiento deficitario por
+región y zona geográfica. CASEN 2024. Elaboración propia.}
+
+{\centering \pandocbounded{\includegraphics[keepaspectratio]{05-resultados_files/figure-pdf/unnamed-chunk-4-1.pdf}}
+
+}
+
+\end{figure}%
+
+Para finalizar este apartado de resultados, es posible señalar que
+dentro de los límites del proyecto se encuentra que los índices de
+hacinamiento y saneamiento poseen categorías de respuesta bastante
+generales; en ese sentido, hacinamiento solo se mide en términos de
+cantidad de personas que habitan una vivienda, mientras que saneamiento
+solo considera si dichas condiciones son aceptables o deficitarias,
+ignorando un análisis más profundo de la problemática. Pese a ello, los
+índices son útiles para medir la problemática de manera general.
 
 \bookmarksetup{startatroot}
 
@@ -508,7 +769,63 @@ Síntesis y proyecciones futuras.
 
 \chapter{Referencias}\label{referencias}
 
-\phantomsection\label{refs}
+\protect\phantomsection\label{refs}
+\begin{CSLReferences}{1}{0}
+\bibitem[\citeproctext]{ref-berrios2023}
+Berríos, J. (2023). \emph{Un acercamiento a las disparidades
+urbano-rural en acceso al agua potable y saneamiento en {Chile}}
+{[}Mathesis, Pontificia Universidad Católica de Chile{]}.
+\url{https://repositorio.uc.cl/handle/11534/75436}
+
+\bibitem[\citeproctext]{ref-dalencon2008}
+D'alencon, R., Justiniano, C., Márquez, F., \& Valderrama, C. (2008).
+Parámetros y estándares de habitabilidad: calidad en la vivienda, el
+entorno inmediato y el conjunto habitacional. \emph{Camino al
+Bicentenario: Propuestas para Chile}, 271-304.
+\url{https://www.researchgate.net/publication/237832171}
+
+\bibitem[\citeproctext]{ref-ducci2008}
+Ducci, M. (2008). La política habitacional como instrumento de
+desintegración social: Efectos de una política de vivienda exitosa. En
+\emph{Retos para la integración social de los pobres en {América
+Latina}} (pp. 293-310). {CLACSO}.
+
+\bibitem[\citeproctext]{ref-mdsf2024}
+Ministerio de Desarrollo Social y Familia. (2024). \emph{Encuesta de
+Caracterización Socioeconómica Nacional {CASEN} 2024}.
+\url{https://observatorio.ministeriodesarrollosocial.gob.cl/encuesta-casen-2024}
+
+\bibitem[\citeproctext]{ref-ortiz2021}
+Ortiz, F. E., \& Soria, K. Y. (2021). El derecho a la vivienda: Apuntes
+para su reivindicación desde la habitabilidad. \emph{Quid 16. Revista
+del Área de Estudios Urbanos}, \emph{15}, 218-233.
+\url{https://www.redalyc.org/journal/5596/559672582012/html/}
+
+\bibitem[\citeproctext]{ref-razmilic2019}
+Razmilic, S. (2019). Inmigración, vivienda y territorio. En
+\emph{Inmigración en {Chile}: Una mirada multidimensional} (pp.
+101-147).
+\url{https://static.cepchile.cl/uploads/cepchile/2022/09/libro_inmigracion_vivienda.pdf}
+
+\bibitem[\citeproctext]{ref-serey2023}
+Serey Morales, C. (2023). \emph{El rol del {Estado} en el aseguramiento
+del derecho a una vivienda adecuada en {Chile}} {[}Mathesis, Universidad
+de Chile{]}. \url{https://repositorio.uchile.cl/handle/2250/195811}
+
+\bibitem[\citeproctext]{ref-trebilcock2024}
+Trebilcock, M. (2024). \emph{Persistencia y futuro de los asentamientos
+informales en {Chile}} (Serie Policy Papers CiPP sobre Políticas
+Públicas). Centro Interdisciplinar de Políticas Públicas ({CiPP}),
+Universidad Alberto Hurtado.
+\url{https://cippuahurtado.cl/wp-content/uploads/2025/01/Policy-asentamientos_con_numeracion_final-vfinal.pdf}
+
+\bibitem[\citeproctext]{ref-vergara2023}
+Vergara-Perucich, J. (2023). Contribución a la medición de la eficiencia
+del sistema habitacional subsidiario en {Chile}. \emph{{ACE}:
+Architecture, City and Environment}, \emph{18}(52).
+\url{https://doi.org/10.5821/ace.18.52.11682}
+
+\end{CSLReferences}
 
 \cleardoublepage
 \phantomsection

@@ -2,4 +2,21 @@
 title: "Antecedentes"
 ---
 
-Respaldo teórico y empírico de la investigación
+Como se mencionó anteriormente, esta investigación surge del interés por estudiar las desigualdades sociales latentes en el país. Para ello, se analiza una de sus principales aristas: la crisis habitacional actual, expresada concretamente en las situaciones de hacinamiento y el déficit de saneamiento básico de los hogares. 
+
+Desde una perspectiva conceptual, la habitabilidad y el acceso a la infraestructura sanitaria minima constituyen componentes esenciales de la calidad residencial. En este sentido, @dalencon2008 definen la habitabilidad como las cualidades de la vivienda, su entorno inmediato y el conjunto habitacional, abarcando desde la estructura material hasta el uso y confort percibido, factores que permiten de manera conjunta "la satisfacción de las necesidades de las personas que la habitan y su desarrollo" (p. 275). De este modo, en el contexto de las asimetrías de Latinoamérica, la vivienda opera como "una expresión espacial de las desigualdades sociales, y a la vez generadora de otras relacionadas con el entorno urbano en donde se ubica"  [@ortiz2021]. 
+
+Según la Encuesta de Caracterización Socioeconómica Nacional (CASEN) [@mdsf2024], el hacinamiento en el área urbana alcanza un 4,2% frente a un 3,3% en el sector rural; por otro lado, el saneamiento deficitario afecta drásticamente al 18,4% de los hogares rurales si lo comparamos con un 2,8% en las zonas urbanas.
+
+Estos fenómenos se encuentran directamente vinculados con el desarrollo habitacional del cono sur. Según @trebilcock2024, la crisis de la vivienda en América Latina se ha extendido de forma sostenida, donde Chile ha experimentado un aumento crítico en el déficit habitacional desde el año 2017. Esta situación recientemente mencionada se ve complejizada por el diseño de instrumentos, debido a que, como menciona @vergara2023, la política habitacional chilena basada en claves subsidiarias focalizadas ha generado una especie de círculo vicioso porque, si bien se observan reducciones en aspectos como el allegamiento y la calidad material, el déficit continúa incrementando en factores más complejos, tales como el hacinamiento. 
+
+Esta expresión del déficit habitacional cambia según el territorio, concentrando dinámicas más complejas en las áreas urbanas debido a factores propios de la oferta y demanda.
+Desde la oferta, la deficiente planificación urbana ha propiciado el aumento de núcleos urbanos hiperdensos, como es el caso de Estación Central, donde existen zonas con densidades bastante altas que superan los 15.000 habitantes por hectárea en edificaciones de gran altura y baja calidad [@serey2023]. Por el lado de la demanda, según @razmilic2019, los flujos migratorios recientes se han localizado en su mayoría en zonas urbanas dinámicas, en lugar de zonas rurales, buscando proximidad a los mercados laborales. En este sentido, la población migrante opta mayoritariamente por el mercado de arriendo, lo que intensifica el hacinamiento crítico.
+
+En lo que respecta al saneamiento básico, la brecha entre lo urbano y lo rural responde a lógicas institucionales y de mercado bastante diferenciadas. Los entornos urbanos se encuentran marcados por altos niveles de cobertura y eficiencia; por el otro lado, la carencia tiende a confinarse en los sectores más empobrecidos y marginados [@berrios2023]. Este fenómeno de exclusión en las ciudades se ve potenciado por la gentrificación, donde las mejoras en la infraestructura básica incrementan el valor de la propiedad, desplazando a las familias de bajos ingresos y, en este sentido, fomentando las disparidades socioeconómicas [@berrios2023].
+
+En el análisis de @berrios2023 se refleja la realidad de las zonas rurales y las dificultades que enfrentan respecto a gestión y de cobertura técnica antes que puramente socioeconomicas, por ejemplo, esta disparidad se intensifica por la variabilidad macro-regional del país y las falencias operacionales de los Programas de Agua Potable Rural (APR), expresadas en una desigual distribución presupuestaria y una falta de inversión en zonas semiconcentradas o dispersas.
+
+El análisis de estas variables mediante la CASEN 2024 resulta fundamental, ya que permite visibilizar la disparidad de fenómenos como el hacinamiento y el saneamiento en zonas rurales y urbanas.
+
+

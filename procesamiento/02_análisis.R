@@ -27,7 +27,7 @@ prop_hacinamiento <- diseno %>%
   summarise(
     prop = survey_mean(hacinado, na.rm = TRUE),
   ) %>%
-  mutate(prop = round(prop * 100, 1))
+  mutate(across(c(prop, prop_se), ~ round(.x * 100, 1)))
 
 print(prop_hacinamiento)
 
@@ -37,7 +37,7 @@ prop_saneamiento <- diseno %>%
   summarise(
     prop = survey_mean(saneamiento_deficitario, na.rm = TRUE)
   ) %>%
-  mutate(prop = round(prop * 100, 1))
+  mutate(across(c(prop, prop_se), ~ round(.x * 100, 1)))
 
 print(prop_saneamiento)
 
@@ -51,7 +51,7 @@ print(test_h1)
 ## H1: Regresión logística ponderada variables zona y hacinamiento
 modelo_h1 <- svyglm(hacinado ~ zona, design = diseno, family = quasibinomial())
 summary(modelo_h1)
-exp(coef(modelo_h1))  
+exp(cbind(OR = coef(modelo_h1), confint(modelo_h1)))
 
 
 ## H2: Chi-cuadrado variables saneamiento deficitario y zona
@@ -61,4 +61,15 @@ print(test_h2)
 ## H2: Regresión logística ponderada variables saneamiento deficitario y zona
 modelo_h2 <- svyglm(saneamiento_deficitario ~ zona, design = diseno, family = quasibinomial())
 summary(modelo_h2)
-exp(coef(modelo_h2))  
+ exp(cbind(OR = coef(modelo_h2), confint(modelo_h2)))  
+
+
+### Analisis exploratorio del hacinamiento por region ###
+
+## Modelo ponderado con interaccion zona x region (region como factor)
+modelo_h3 <- svyglm(hacinado ~ zona * factor(region),
+                    design = diseno, family = quasibinomial())
+summary(modelo_h3)
+
+## Test global de la interacción: ¿el efecto de zona difiere entre regiones?
+regTermTest(modelo_h3, ~ zona:factor(region))

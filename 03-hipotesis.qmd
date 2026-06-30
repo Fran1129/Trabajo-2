@@ -2,4 +2,11 @@
 title: "Hipótesis"
 ---
 
-Hipótesis de investigación. Deben ser pre-registradas.
+La pregunta que este proyecto busca respondes es: ¿Cuáles son las diferencias en las situaciones de hacinamiento y de acceso a saneamiento básico de los hogares en las zonas rurales respecto de las zonas urbanas en Chile? 
+
+En ese sentido, para poder responder a dicha interrogante se plantean las siguientes hipótesis: 
+
+H1: La proporción de hogares en situación de hacinamiento (más de 2.5 personas por dormitorio) es significativamente mayor en zonas rurales que en zonas urbanas.
+H2: El acceso a saneamiento adecuado (agua potable y sistema de alcantarillado) es menor en zonas rurales que en las zonas urbanas. 
+
+Dichas hipótesis fueron pre registradas en el repositorio de Open Science Framework (OSF) del proyecto, con el fin de garantizar la transparencia y reproducibilidad de la investigación. El repositorio se encuentra disponible en: @fuentes2026

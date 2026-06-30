@@ -32,4 +32,3 @@ casen_hog <- casen_hog %>%
     # Zona como factor con etiquetas
     zona = factor(area, levels = c(1, 2), labels = c("Urbano", "Rural"))
   )
-

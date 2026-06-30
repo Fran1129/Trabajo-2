@@ -1,4 +1,152 @@
 ﻿---
 title: "Resultados"
 ---
-Interpreta resultados, limitaciones y aportes.
+Los análisis descriptivos realizados permitieron caracterizar la situación de hacinamiento y saneamiento tanto en las zonas rurales como en las zonas urbanas; asimismo, los resultados permitieron contrastar las hipótesis anteriormente registradas. 
+
+Respecto de la situación de hacinamiento (H1), para evaluar la situación según la zona de residencia, se realizó una prueba de Chi cuadrado junto una regresión logística, utilizando las variables de hacinamiento y zona (es decir, rural o urbana). Los resultados de las pruebas arrojaron que el porcentaje de hacinamiento en las zonas urbanas es de 4,2%, mientras que en la zona rural es de 3,3%, todo esto con una diferencia estadísticamente significativa (p = 0,0006).
+A su vez el análisis de regresión logística muestra que los hogares rurales tienen un 22% menos probabilidad de estar hacinados que los hogares urbanos (OR = 0,78). Por tanto, la hipótesis que planteaba que el hacinamiento sería mayor en zonas rurales que en zonas urbanas, se rechaza.
+
+A continuación se presenta el gráfico con los resultados:
+
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(haven)
+library(survey)
+library(srvyr)
+
+# Cargar datos procesados
+source("procesamiento/01_procesamiento.R")
+
+# Diseño muestral
+diseno <- casen_hog %>%
+  as_survey_design(
+    ids = varunit,
+    strata = varstrat,
+    weights = expr,
+    nest = TRUE
+  )
+
+# Proporciones
+prop_hacinamiento <- diseno %>%
+  group_by(zona) %>%
+  summarise(prop = survey_mean(hacinado, na.rm = TRUE)) %>%
+  mutate(prop = round(prop * 100, 1))
+
+prop_saneamiento <- diseno %>%
+  group_by(zona) %>%
+  summarise(prop = survey_mean(saneamiento_deficitario, na.rm = TRUE)) %>%
+  mutate(prop = round(prop * 100, 1))
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Figura 1. Porcentaje de hogares en situación de hacinamiento según zona geográfica. CASEN 2024. Elaboración propia."
+
+ggplot(prop_hacinamiento, aes(x = zona, y = prop, fill = zona)) +
+  geom_col(width = 0.5, color = "black") +
+  scale_fill_manual(
+    values = c("Urbano" = "#4575b4", "Rural" = "#d73027"),
+    name = "Zona"
+  ) +
+  scale_y_continuous(labels = function(x) paste0(x, "%")) +
+  labs(
+    title = "Porcentaje de hogares en situación de hacinamiento",
+    subtitle = "Comparación Urbano vs Rural (Casen 2024 - Datos Ponderados)",
+    y = "Porcentaje (%)",
+    x = "Zona Geográfica"
+  ) +
+  theme_minimal()
+```
+
+
+La metodología utilizada para contrastar la hipótesis de saneamiento (H2) fue exactamente la misma, en ese sentido, los resultados indicaron que mientras en las zonas urbanas el saneamiento deficitario es de 2,8%, en las zonas rurales este alcanza un 18,4%, por lo que los hogares rurales tiene una probabilidad casi ocho veces mayor de vivir en estas condiciones. Dichos resultados permiten confirmar la hipótesis de que el acceso a saneamiento adecuado es menor en zonas rurales que en las zonas urbanas. 
+
+A continuación se presenta el gráfico con los resultados: 
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Figura 2. Porcentaje de hogares con saneamiento deficitario según zona geográfica. CASEN 2024. Elaboración propia."
+
+ggplot(prop_saneamiento, aes(x = zona, y = prop, fill = zona)) +
+  geom_col(width = 0.5, color = "black") +
+  scale_fill_manual(
+    values = c("Urbano" = "#4575b4", "Rural" = "#d73027"),
+    name = "Zona"
+  ) +
+  scale_y_continuous(labels = function(x) paste0(x, "%")) +
+  labs(
+    title = "Porcentaje de hogares con saneamiento deficitario",
+    subtitle = "Comparación Urbano vs Rural (Casen 2024 - Datos Ponderados)",
+    y = "Porcentaje (%)",
+    x = "Zona Geográfica"
+  ) +
+  theme_minimal()
+```
+
+
+Sobre los alcances del presente proyecto, este permite caracterizar la situación de hacinamiento y saneamiento a nivel nacional, distinguiendo entre zonas rurales y urbanas mediante el uso de datos recientes y atingentes a la problemática. En ese sentido, cabe precisar que las hipótesis registradas consideran únicamente el desglose urbano-rural; no obstante, con el fin de enriquecer el estudio, se incorporó un análisis exploratorio a nivel regional. Este último apartado se plantea sólo como un complemento para la discusión, ya que no formaba parte del registro inicial, pero se considera que su inclusión permite evaluar si las brechas urbano-rurales son homogéneas en todo el país o si varían según la región, fortaleciendo así las discusiones del proyecto.
+
+En ese sentido, el análisis exploratorio arrojó que las diferencias en hacinamiento entre zonas urbanas y rurales son pequeñas y poco consistentes a lo largo del país, lo que es coherente con los hallazgos de la hipótesis 1. Cabe señalar que las regiones que arrojan una mayor crisis de hacinamiento corresponden a la Región de Arica y Parinacota y la de Tarapacá, lo que podría atribuirse al alto flujo migratorio de aquellas regiones. Respecto del análisis de saneamiento por región, este arrojó diferencias más latentes, debido a que regiones del sur como La Araucanía o Los Ríos presentan un mayor déficit de saneamiento que regiones mayormente urbanizadas, como la Región Metropolitana. Por lo que, tal como se presenta en los gráficos anteriores, es posible destacar que las diferencias entre el hacinamiento y el acceso a saneamiento adecuado, no son homogéneas a lo largo de todas las regiones.
+
+A continuación se presentan los gráficos con los resultados del análisis exploratorio por región: 
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Figura 3. Porcentaje de hogares en situación de hacinamiento por región y zona geográfica. CASEN 2024. Elaboración propia."
+
+prop_region_hac <- svyby(~hacinado, ~zona + region, diseno, svymean)
+prop_region_hac <- prop_region_hac %>%
+  mutate(region = factor(region, levels = 1:16,
+    labels = c("Tarapacá", "Antofagasta", "Atacama", "Coquimbo",
+               "Valparaíso", "O'Higgins", "Maule", "Biobío",
+               "Araucanía", "Los Lagos", "Aysén", "Magallanes",
+               "Metropolitana", "Los Ríos", "Arica", "Ñuble")))
+
+ggplot(prop_region_hac, aes(x = region, y = hacinado, fill = zona)) +
+  geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#4575b4", "#d73027"), name = "Zona") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(title = "Hacinamiento por región y zona",
+       subtitle = "CASEN 2024 - Chile",
+       x = "Región", y = "Proporción hacinados") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-cap: "Figura 4. Porcentaje de hogares con saneamiento deficitario por región y zona geográfica. CASEN 2024. Elaboración propia."
+
+prop_region_san <- svyby(~saneamiento_deficitario, ~zona + region, diseno, svymean)
+prop_region_san <- prop_region_san %>%
+  mutate(region = factor(region, levels = 1:16,
+    labels = c("Tarapacá", "Antofagasta", "Atacama", "Coquimbo",
+               "Valparaíso", "O'Higgins", "Maule", "Biobío",
+               "Araucanía", "Los Lagos", "Aysén", "Magallanes",
+               "Metropolitana", "Los Ríos", "Arica", "Ñuble")))
+
+ggplot(prop_region_san, aes(x = region, y = saneamiento_deficitario, fill = zona)) +
+  geom_col(position = "dodge") +
+  scale_fill_manual(values = c("#4575b4", "#d73027"), name = "Zona") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(title = "Saneamiento deficitario por región y zona",
+       subtitle = "CASEN 2024 - Chile",
+       x = "Región", y = "Proporción saneamiento deficitario") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+Para finalizar este apartado de resultados, es posible señalar que dentro de los límites del proyecto se encuentra que los índices de hacinamiento y saneamiento poseen categorías de respuesta bastante generales; en ese sentido, hacinamiento solo se mide en términos de cantidad de personas que habitan una vivienda, mientras que saneamiento solo considera si dichas condiciones son aceptables o deficitarias, ignorando un análisis más profundo de la problemática. Pese a ello, los índices son útiles para medir la problemática de manera general. 
+
